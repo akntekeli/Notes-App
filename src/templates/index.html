@@ -1,12 +1,21 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kişisel Not Yönetimi</title>
-</head>
-<body>
-  <h1>Kişisel Not Yönetimi</h1>
-  <p>Uygulama çalışıyor. Not fonksiyonları sonraki haftalarda eklenecek.</p>
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+  {% if notes %}
+    {% for note in notes %}
+      <div class="note">
+        <h2>{{ note.title }}</h2>
+        <p>{{ note.content }}</p>
+        <div class="meta">
+          Güncellenme: {{ note.updated_at }}
+          · <a href="{{ url_for('edit_note', note_id=note.id) }}">Düzenle</a>
+                    · <form method="post" action="{{ url_for('delete_note', note_id=note.id) }}"
+                  style="display:inline" onsubmit="return confirm('Bu not silinsin mi?');">
+              <button type="submit" style="background:#b91c1c;padding:.2rem .5rem;font-size:.85rem">Sil</button>
+            </form>
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>Henüz not yok. "+ Yeni Not" ile ilk notunu ekle.</p>
+  {% endif %}
+{% endblock %}
