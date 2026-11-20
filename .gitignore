@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Ortam ve veritabanı
+.env
+*.db
+instance/
+
+# Editör
+.vscode/
+.idea/
