@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>{{ heading }}</h2>
+  {% if error %}<div class="error">{{ error }}</div>{% endif %}
+  <form method="post">
+    <label for="title">Başlık</label>
+    <input type="text" id="title" name="title" value="{{ note['title'] }}" required>
+    <label for="content">İçerik</label>
+    <textarea id="content" name="content" rows="8">{{ note['content'] or '' }}</textarea>
+    <button type="submit">Kaydet</button>
+    <a href="{{ url_for('index') }}">İptal</a>
+  </form>
+{% endblock %}
